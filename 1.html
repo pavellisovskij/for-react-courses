@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>1 test js</title>
+</head>
+<body>
+
+<input type="text" name="" value="" id="number">
+<button type="submit" name="button" id="send" onclick="showText()">Отправить</button>
+
+<div id="content">
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+  function showText() {
+    var text = ""; //объявление строки
+
+    /* получаем значение введенное в input c id = number */
+    var count = document.getElementById('number').value;
+    /* получаем элемент с id = content для дальнейшего обращения к нему */
+    var content = document.getElementById('content');
+
+    /* формирование строки для вывода в элементе с id = content */
+    if (count == 0 || count < 0) {
+      /* строка, если введенное в input значение < или = 0 */
+      text = "no sheep found";
+    }
+    else {
+      /* строка, если введенное в input значение > 0 */
+      var i = 1;
+      count++;
+      while (i != count) {
+        text += i + ' sheep...';
+        i++;
+      }
+    }
+
+    /* вставка в div с id=content сформированной строки */
+    content.innerHTML += "<div>" + text + "<div>";
+  }
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>6 test js</title>
+</head>
+<body>
+  <label for="str">Строка</label>
+  <input type="text" name="str" placeholder="create a frame" id="str">
+  <br>
+  <label for="symbol">Символ для рамки</label>
+  <input type="text" name="symbol" id="symbol">
+  <br>
+  <button type="submit" name="button" id="send" onclick="show()">Отправить</button>
+  <br>
+</body>
+</html>
+
+<script type="text/javascript">
+  function show() {
+    var str = document.getElementById('str').value;
+    var symbol = document.getElementById('symbol').value;
+
+    if (str == '' || str == ' ') str = undefined;
+    if (symbol == '' || symbol == ' ') symbol = undefined;
+
+    /*
+      блок отвечает за разделение введенной в <input> строки
+      и выделение из полученного массива строк самой длинной строки
+    */
+    if (str != undefined) {
+      var arr_str = str.split(' ');
+
+      var l_str = 0;
+      for (var i = 0; i < arr_str.length; i++) {
+        if (arr_str[i].length > l_str) {
+          l_str = arr_str[i].length;
+        }
+      }
+    }
+    /*
+      конец блока
+    */
+
+    // вызов функции отвечающей за вывод рамки 
+    frame(arr_str, symbol, l_str);
+  }
+
+  /*
+    возвращает строку с верхней или нижней границей рамки
+  */
+  function symbol_string(symbol, l_str) {
+    var str = [];
+    for (var i = 0; i < l_str + 4; i++) {
+      str += symbol;
+    }
+    return str;
+  }
+
+  /*
+    выводит в консоль введенную строку в рамке
+    arr_str - массив строк,
+    symbol - символ для рамки,
+    l_str - длиннейшая строка в массиве строк
+  */
+  function frame(arr_str = ['create', 'a', 'frame'], symbol = '*', l_str = 6) {
+    // выводит верхнюю границу рамки
+    console.log(symbol_string(symbol, l_str));
+    /*
+      данный блок служит для правильного вывода строк в рамке
+    */
+    for (var i = 0; i < arr_str.length; i++) {
+      var length_difference = l_str - arr_str[i].length;
+      str = symbol + ' ';
+      if (length_difference == 0) {
+        str += arr_str[i] + ' ' + symbol;
+      }
+      else {
+        // space служит для заполнения пробелами коротких строк
+        var space = '';
+        for (var j = 0; j < length_difference + 1; j++) {
+          space += ' ';
+        }
+        str += arr_str[i] + space + symbol;
+      }
+      console.log(str);
+    }
+    /*
+      конец блока вывода строк
+    */
+
+    // выводит нижнюю границу рамки
+    console.log(symbol_string(symbol, l_str));
+  }
+
+</script>

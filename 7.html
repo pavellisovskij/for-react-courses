@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>7 test js</title>
+</head>
+<body>
+
+  <p><b>В консоли браузера вызываем методы: </b></p>
+  <p><b>createObj(value)</b> - создает объект, value - свойство объекта </p>
+  <p><b>getValue()</b> - получает значение свойства объекта </p>
+  <p><b>setValue(value)</b> - устанавливает значение свойства value </p>
+</body>
+</html>
+
+
+<script type="text/javascript">
+/*
+  функция возвращает объект obj
+*/
+function createObj(value) {
+  var obj = {};
+  obj.value = value;
+  obj.getValue = function ()  {
+    console.log(this.value);
+  };
+  obj.setValue = function (value) {
+    this.value = value;
+  }
+  return obj;
+}
+</script>

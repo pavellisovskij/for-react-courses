@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>5 test js</title>
+</head>
+<body>
+  <label for="arr_size">Размер массива</label>
+  <input type="text" name="arr_size" value="" id="arr_size">
+  <br>
+  <label for="number">Число</label>
+  <input type="text" name="number" value="" id="number">
+  <br>
+  <button type="submit" name="button" id="send" onclick="show()">Отправить</button>
+  <br>
+  <h4>Массив заполняется рандомно целыми числами от 0 до 100</h4>
+</body>
+</html>
+
+<script type="text/javascript">
+  function show() {
+    var arr_size = document.getElementById('arr_size').value;
+    var number = document.getElementById('number').value;
+    var arr = [];
+
+    // заполняем массив рандомными значениями
+    for (var i = 0; i < arr_size; i++) {
+      arr[i] = getRandomInt(0, 100);
+    }
+
+    // сортировка массива
+    arr.sort(compareNumeric);
+
+    // вывод результата в консоль
+    console.log('Найменьший индекс для числа ' + number +' - ' + getLowerestIndex(arr, number));
+  }
+
+  /*
+    функция вычисления найменьшего индекса
+    arr - массив для поиска,
+    number - число, для которого ищем найменьший индекс в массиве
+  */
+  function getLowerestIndex(arr, number) {
+    var index;
+
+    // если введенное число меньше 0-ого элемента массива, то найменьший индекс равен 0
+    if (number < arr[0]) {
+      index = 0;
+    }
+    // иначе если введеное число больше последнего элемента массива, то найменьший индекс равен arr.length
+    else if (number > arr[arr.length-1]) {
+      index = arr.length;
+    }
+    // иначе ищем найменьший индекс между элементами массива
+    else {
+      for (var i = 0; i < arr.length; i++) {
+        if ((number < arr[ i + 1 ]) && (number > arr[i])) {
+          index = i + 1;
+          break;
+        }
+      }
+    }
+
+    // выводит отсортированный массив
+    console.log(arr);
+    return index;
+  }
+
+  /*
+    функция получения случайного числа
+  */
+  function getRandomInt(min, max)
+  {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  /*
+    настраиваем сортировку массива
+  */
+  function compareNumeric(a, b) {
+    return a - b;
+  }
+</script>

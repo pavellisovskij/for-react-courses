@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3 test js</title>
+</head>
+<body>
+
+  <input type="text" name="" value="" id="sentence">
+  <button type="submit" name="button" id="send" onclick="show()">Отправить</button>
+
+  <div id="content">
+  </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+  function show() {
+    document.getElementById('content').innerHTML = "";
+    /* получаем значение введенное в input c id = sentence */
+    var sentence = document.getElementById('sentence').value;
+    /* получаем элемент с id = content для дальнейшего обращения к нему */
+    var content = document.getElementById('content');
+
+    // получаем массив строк
+    var arr = sentence.split(' ');
+
+    var shortest_word = 1000;
+
+    // вычисляем самое короткое слово
+    for (var i = 0; i < arr.length; i++) {
+        var str = arr[i];
+        if (shortest_word > str.length) {
+          shortest_word = str.length;
+        }
+    }
+
+    // выводим в HTML результат
+    content.innerHTML = 'Самое короткое слово в строке - ' + shortest_word;
+  }
+</script>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4 test js</title>
+</head>
+<body>
+  <label for="arr_size">Размер разбиваемого массива</label>
+  <input type="text" name="arr_size" value="" id="arr_size">
+  <br>
+  <label for="elem_size">Размер получаемых элементов</label>
+  <input type="text" name="elem_size" value="" id="elem_size">
+  <br>
+  <button type="submit" name="button" id="send" onclick="show()">Отправить</button>
+  <br>
+  <h4>Массив заполняется рандомно целыми числами от 0 до 100</h4>
+</body>
+</html>
+
+<script type="text/javascript">
+  function show() {
+    var arr_size = document.getElementById('arr_size').value;
+    var elem_size = document.getElementById('elem_size').value;
+    var arr = [];
+
+    // заполняем массив случайными значениями
+    for (var i = 0; i < arr_size; i++) {
+      arr[i] = getRandomInt(0, 100);
+    }
+    // вывод результата
+    console.log(getDimensionalArray(arr, elem_size));
+  }
+
+  /*
+    функция разбиения массива на несколько массивов меньшего размера
+    arr - разбиваемый массив,
+    elem_size - размер получаемых массивов
+  */
+  function getDimensionalArray(arr, elem_size) {
+    // массив разделенных массивов
+    var d_arr = [];
+    // массив размера elem_size
+    var elem_arr = [];
+
+    // количество массивов меньшего размера
+    var size = Math.ceil(arr.length/elem_size);
+
+    // создание массива с массивами размера elem_size
+    for (var i = 0; i < size; i++) {
+      // получение массива размера elem_size
+      elem_arr = arr.splice(0, elem_size);
+      // добавление массива elem_arr в массив d_arr
+      d_arr.push(elem_arr);
+    }
+    
+    return d_arr;
+  }
+
+  /*
+    функция получения случайного числа
+  */
+  function getRandomInt(min, max)
+  {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>
